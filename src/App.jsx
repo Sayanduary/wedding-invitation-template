@@ -90,7 +90,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="font-sans antialiased text-gray-800 selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden">
       <style>
         {`
           .global-flower-rain {
@@ -102,7 +102,7 @@ function App() {
             top: -12%;
             display: block;
             opacity: 0;
-            will-change: transform;
+            will-change: transform, opacity;
             animation: global-flower-fall linear forwards;
           }
 
@@ -110,9 +110,9 @@ function App() {
             display: block;
             width: 100%;
             height: 100%;
-            will-change: transform;
-            animation: global-flower-sway ease-in-out infinite, global-flower-rotate ease-in-out infinite;
-            animation-duration: 3.2s, 2.8s;
+            will-change: transform, rotate;
+            animation: global-flower-sway ease-in-out infinite, global-flower-rotate linear infinite;
+            animation-duration: 3.2s, 4.5s;
             animation-delay: 0s, 0s;
           }
 
@@ -120,13 +120,14 @@ function App() {
             position: relative;
             width: 100%;
             height: 100%;
+            filter: drop-shadow(0 4px 6px rgba(216, 80, 130, 0.25));
           }
 
           .global-flower-petal {
             position: absolute;
             inset: 34% 22% 34% 22%;
             border-radius: 50% 50% 45% 45%;
-            background: radial-gradient(circle at 35% 35%, #ffe6ef 0%, #f39bb8 55%, #d85082 100%);
+            background: radial-gradient(circle at 35% 35%, #fff0f5 0%, #f4abc4 40%, #e05e8d 80%, #c93b6e 100%);
             transform-origin: center;
           }
 
@@ -141,30 +142,36 @@ function App() {
             position: absolute;
             inset: 34%;
             border-radius: 50%;
-            background: radial-gradient(circle at 35% 35%, #fff8bf 0%, #f6c445 60%, #d8a500 100%);
-            box-shadow: 0 0 8px rgba(246, 196, 69, 0.55);
+            background: radial-gradient(circle at 35% 35%, #fffbe6 0%, #fad15c 50%, #e09f00 100%);
+            box-shadow: 0 0 10px rgba(250, 209, 92, 0.6), inset 0 -2px 4px rgba(224, 159, 0, 0.4);
           }
 
           @keyframes global-flower-fall {
-            from {
-              opacity: 0.95;
+            0% {
+              opacity: 0;
               transform: translate3d(0, -10vh, 0);
             }
-            to {
+            15% {
+              opacity: 0.95;
+            }
+            85% {
+              opacity: 0.95;
+            }
+            100% {
               opacity: 0;
               transform: translate3d(0, 120vh, 0);
             }
           }
 
           @keyframes global-flower-sway {
-            0% {
-              margin-left: 0;
+            0%, 100% {
+              transform: translateX(0);
             }
-            50% {
-              margin-left: var(--sway);
+            33% {
+              transform: translateX(var(--sway));
             }
-            100% {
-              margin-left: calc(var(--sway) * -0.6);
+            66% {
+              transform: translateX(calc(var(--sway) * -0.75));
             }
           }
 

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import scratchTexture from "../../assets/Scratch Cards1.png";
+import flowerImage from "../../assets/fl3.png";
 
 const FLOWER_COUNT = 30;
 const CELEBRATION_DURATION_MS = 7000;
@@ -260,15 +261,12 @@ function Reveal() {
                   "--rotate-end": `${particle.rotateEnd}deg`,
                 }}
               >
-                <div className="flower-core" aria-hidden="true">
-                  <span className="flower-petal" />
-                  <span className="flower-petal" />
-                  <span className="flower-petal" />
-                  <span className="flower-petal" />
-                  <span className="flower-petal" />
-                  <span className="flower-petal" />
-                  <span className="flower-center" />
-                </div>
+                <img
+                  src={flowerImage}
+                  alt="flower"
+                  className="flower-core w-full h-full object-contain"
+                  aria-hidden="true"
+                />
               </div>
             </div>
           ))}

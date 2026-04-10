@@ -1,4 +1,4 @@
-import bgImage from "../../assets/bg.jpg";
+import bgImage from "../../assets/roszie.png";
 
 function HeroSection() {
   const names = ["Sam", "sofia"];
@@ -6,7 +6,7 @@ function HeroSection() {
     <div className="relative h-screen flex flex-col items-center justify-center sm:justify-between gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 text-center bg-[#f8f4f4] overflow-hidden px-4 xs:px-5 sm:px-6 md:px-8 lg:px-12 pt-6 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-6 xs:pb-8 sm:pb-10 md:pb-12 lg:pb-14">
       {/* Background Image Layer positioned at top to show trees */}
       <div
-        className="absolute inset-0 z-0 opacity-10 bg-top bg-cover bg-no-repeat pointer-events-none"
+        className="absolute inset-0 z-0 opacity-70 bg-cover bg-center bg-no-repeat pointer-events-none"
         style={{ backgroundImage: `url(${bgImage})` }}
       ></div>
 
@@ -18,7 +18,7 @@ function HeroSection() {
       </style>
 
       <div className="flex flex-col items-center justify-center flex-1">
-        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl tracking-wider max-w-2xl relative z-10 mt-0 leading-relaxed px-2 xs:px-3 sm:px-4">
+        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl tracking-wider max-w-2xl relative z-10 mt-0 leading-relaxed px-2 xs:px-3 sm:px-4 ">
           YOU ARE CORDIALLY INVITED TO CELEBRATE THE WEDDING OF
         </div>
         <div className="relative flex flex-col items-center mt-4 xs:mt-6 sm:mt-8 md:mt-10 lg:mt-12 z-10 w-full max-w-4xl px-2 xs:px-3 sm:px-4">
@@ -32,7 +32,7 @@ function HeroSection() {
             {names[1]}
           </div>
         </div>
-        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 relative z-10 leading-relaxed mt-10 sm:mt-0">
+        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 relative z-10 leading-relaxed mt-10 sm:mt-0 lg:mt-10">
           WE WOULD LIKE TO INVITE YOU TO CELEBRATE WITH US THE MOST SPECIAL DAY
           OF OUR LIVES. IT WOULD BE AN HONOR TO HAVE YOU PRESENT AT THIS
           IMPORTANT MOMENT.

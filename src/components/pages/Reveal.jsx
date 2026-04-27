@@ -1,23 +1,23 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import scratchTexture from "../../assets/Scratch Cards1.png";
 
-
-const FLOWER_COUNT = 30;
+const DOT_COUNT = 36;
 const CELEBRATION_DURATION_MS = 7000;
-const FLOWER_START_DELAY_MS = 0.5;
+const DOT_START_DELAY_MS = 0.5;
 const MOBILE_CANVAS_SIZE = 112;
 const DESKTOP_CANVAS_SIZE = 160;
+const DOT_COLORS = ["#ef476f", "#7b61ff", "#f9c74f", "#4d7cff", "#43a047"];
 
-const generateFlowerParticles = (count) =>
+const generateDotParticles = (count) =>
   Array.from({ length: count }, (_, index) => ({
     id: index,
     left: Math.random() * 100,
-    size: 18 + Math.random() * 24,
+    top: -12 - Math.random() * 14,
+    size: 16 + Math.random() * 9,
     duration: 6 + Math.random() * 7,
     delay: Math.random() * 2.5,
-    sway: 30 + Math.random() * 70,
-    rotateStart: Math.random() * 180,
-    rotateEnd: 180 + Math.random() * 360,
+    sway: 18 + Math.random() * 42,
+    color: DOT_COLORS[index % DOT_COLORS.length],
   }));
 
 function Reveal() {
@@ -31,13 +31,11 @@ function Reveal() {
   const [isDrawing1, setIsDrawing1] = useState(false);
   const [isDrawing2, setIsDrawing2] = useState(false);
   const [isDrawing3, setIsDrawing3] = useState(false);
-  const [showFlowerRain, setShowFlowerRain] = useState(false);
+  const [showDotRain, setShowDotRain] = useState(false);
   const [canvasSize, setCanvasSize] = useState(() =>
     window.innerWidth >= 640 ? DESKTOP_CANVAS_SIZE : MOBILE_CANVAS_SIZE,
   );
-  const [flowerParticles] = useState(() =>
-    generateFlowerParticles(FLOWER_COUNT),
-  );
+  const [dotParticles] = useState(() => generateDotParticles(DOT_COUNT));
 
   const allScratched = isScratched1 && isScratched2 && isScratched3;
 
@@ -89,12 +87,12 @@ function Reveal() {
 
     celebrationStartedRef.current = true;
     const startTimer = window.setTimeout(() => {
-      setShowFlowerRain(true);
+      setShowDotRain(true);
       window.dispatchEvent(new Event("wedding:flowerRain"));
-    }, FLOWER_START_DELAY_MS);
+    }, DOT_START_DELAY_MS);
 
     const stopTimer = window.setTimeout(() => {
-      setShowFlowerRain(false);
+      setShowDotRain(false);
     }, CELEBRATION_DURATION_MS);
 
     return () => {
@@ -146,106 +144,94 @@ function Reveal() {
   };
 
   return (
-    <div className="relative min-h-screen h-auto bg-[#faf8f5] flex flex-col items-center justify-center gap-8 sm:gap-14 text-center overflow-hidden px-4 py-10 sm:py-0">
+    <div className="relative min-h-screen h-auto overflow-hidden bg-[#f7f2e9] px-4 py-10 text-center text-[#26211d] sm:py-0">
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
-.flower-rain {
-  z-index: 30;
+@keyframes paper-speckle-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-1px, 1px, 0);
+  }
 }
 
-.flower-drop {
+.dot-rain {
+  z-index: 0;
+}
+
+.dot-drop {
   position: absolute;
-  top: -12%;
   display: block;
   opacity: 0;
-  will-change: transform;
-  animation: flower-fall linear forwards;
+  will-change: transform, opacity;
+  animation: dot-fall linear forwards;
 }
 
-.flower-sway {
+.dot-sway {
   display: block;
   width: 100%;
   height: 100%;
   will-change: transform;
-  animation: flower-sway ease-in-out infinite, flower-rotate ease-in-out infinite;
-  animation-duration: 3.2s, 2.8s;
-  animation-delay: 0s, 0s;
+  animation: dot-sway ease-in-out infinite;
+  animation-duration: 3.2s;
 }
 
-.flower-core {
+.dot-core {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.flower-petal {
+.dot-shape {
   position: absolute;
-  inset: 34% 22% 34% 22%;
-  border-radius: 50% 50% 45% 45%;
-  background: radial-gradient(circle at 35% 35%, #ffe6ef 0%, #f39bb8 55%, #d85082 100%);
-  transform-origin: center;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
-.flower-petal:nth-child(1) { transform: rotate(0deg) translateY(-42%); }
-.flower-petal:nth-child(2) { transform: rotate(60deg) translateY(-42%); }
-.flower-petal:nth-child(3) { transform: rotate(120deg) translateY(-42%); }
-.flower-petal:nth-child(4) { transform: rotate(180deg) translateY(-42%); }
-.flower-petal:nth-child(5) { transform: rotate(240deg) translateY(-42%); }
-.flower-petal:nth-child(6) { transform: rotate(300deg) translateY(-42%); }
-
-.flower-center {
-  position: absolute;
-  inset: 34%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff8bf 0%, #f6c445 60%, #d8a500 100%);
-  box-shadow: 0 0 8px rgba(246, 196, 69, 0.55);
-}
-
-@keyframes flower-fall {
-  from {
-    opacity: 0.95;
+@keyframes dot-fall {
+  0% {
+    opacity: 0;
     transform: translate3d(0, -10vh, 0);
   }
-  to {
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
     opacity: 0;
     transform: translate3d(0, 120vh, 0);
   }
 }
 
-@keyframes flower-sway {
-  0% {
-    margin-left: 0;
+@keyframes dot-sway {
+  0%, 100% {
+    transform: translateX(0);
   }
   50% {
-    margin-left: var(--sway);
-  }
-  100% {
-    margin-left: calc(var(--sway) * -0.6);
+    transform: translateX(var(--sway));
   }
 }
-
-@keyframes flower-rotate {
-  from {
-    rotate: var(--rotate-start);
-  }
-  to {
-    rotate: var(--rotate-end);
-  }
-}`}
+`}
       </style>
 
-      {showFlowerRain && (
+      {showDotRain && (
         <div
-          className="flower-rain absolute inset-0 pointer-events-none"
+          className="dot-rain pointer-events-none absolute inset-0"
           aria-hidden="true"
         >
-          {flowerParticles.map((particle) => (
+          {dotParticles.map((particle) => (
             <div
               key={particle.id}
-              className="flower-drop"
+              className="dot-drop"
               style={{
                 left: `${particle.left}%`,
+                top: `${particle.top}%`,
                 width: `${particle.size}px`,
                 height: `${particle.size}px`,
                 animationDuration: `${particle.duration}s`,
@@ -253,105 +239,127 @@ function Reveal() {
               }}
             >
               <div
-                className="flower-sway"
+                className="dot-sway"
                 style={{
-                  animationDelay: `${particle.delay}s, ${particle.delay}s`,
                   "--sway": `${particle.sway}px`,
-                  "--rotate-start": `${particle.rotateStart}deg`,
-                  "--rotate-end": `${particle.rotateEnd}deg`,
+                  color: particle.color,
                 }}
-              ></div>
+              >
+                <div className="dot-core" aria-hidden="true">
+                  <span
+                    className="dot-shape"
+                    style={{ backgroundColor: particle.color }}
+                  />
+                </div>
+              </div>
             </div>
           ))}
         </div>
       )}
 
-      <div>
-        <h1 className=" text-5xl sm:text-7xl font-['Playfair_Display'] text-[#5c2018] italic mt-4 sm:mt-10 ">
-          Reveal
-        </h1>
-      </div>
+      <div className="pointer-events-none absolute inset-0 z-[1] border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]" />
 
-      <div>
-        <p className=" text-lg sm:text-2xl font-['Playfair_Display'] text-[#5c2018] italic">
-          SCRATCH TO DISCOVER THE DATE
-        </p>
-      </div>
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] opacity-25"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(92,74,56,0.24) 0.7px, transparent 0.7px), radial-gradient(rgba(92,74,56,0.12) 0.9px, transparent 0.9px)",
+          backgroundSize: "8px 8px, 13px 13px",
+          backgroundPosition: "0 0, 4px 6px",
+          animation: "paper-speckle-drift 9s ease-in-out infinite",
+        }}
+      />
 
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-10 text-3xl sm:text-4xl font-bold">
-        <div className="relative w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center border-2 border-[#ffffff] rounded-full bg-white overflow-hidden text-[#5c2018] font-light">
-          <span className={isScratched1 ? "opacity-100" : "opacity-0"}>10</span>
-          {!isScratched1 && (
-            <canvas
-              ref={canvasRef1}
-              width={canvasSize}
-              height={canvasSize}
-              className="absolute inset-0 cursor-pointer touch-none"
-              onMouseDown={() => setIsDrawing1(true)}
-              onMouseUp={() => setIsDrawing1(false)}
-              onMouseMove={(e) =>
-                scratch(e, canvasRef1, setIsScratched1, isDrawing1)
-              }
-              onMouseLeave={() => setIsDrawing1(false)}
-              onTouchStart={() => setIsDrawing1(true)}
-              onTouchEnd={() => setIsDrawing1(false)}
-              onTouchMove={(e) =>
-                scratch(e, canvasRef1, setIsScratched1, isDrawing1)
-              }
-            />
-          )}
+      <div className="relative z-2 flex min-h-[calc(100svh-2rem)] flex-col items-center justify-center gap-8 text-center sm:gap-14">
+        <div>
+          <h1 className="text-5xl sm:text-7xl font-['Special_Elite'] text-[#26211d] italic mt-4 sm:mt-10">
+            reveal the date
+          </h1>
         </div>
-        <div className="relative w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center border-2 border-[#ffffff] rounded-full bg-white overflow-hidden text-[#5c2018] font-light">
-          <span className={isScratched2 ? "opacity-100" : "opacity-0"}>10</span>
-          {!isScratched2 && (
-            <canvas
-              ref={canvasRef2}
-              width={canvasSize}
-              height={canvasSize}
-              className="absolute inset-0 cursor-pointer touch-none"
-              onMouseDown={() => setIsDrawing2(true)}
-              onMouseUp={() => setIsDrawing2(false)}
-              onMouseMove={(e) =>
-                scratch(e, canvasRef2, setIsScratched2, isDrawing2)
-              }
-              onMouseLeave={() => setIsDrawing2(false)}
-              onTouchStart={() => setIsDrawing2(true)}
-              onTouchEnd={() => setIsDrawing2(false)}
-              onTouchMove={(e) =>
-                scratch(e, canvasRef2, setIsScratched2, isDrawing2)
-              }
-            />
-          )}
+
+        <div>
+          <p className="text-lg sm:text-2xl font-['Special_Elite'] text-[#1f2125] italic">
+            SCRATCH TO DISCOVER THE DATE
+          </p>
         </div>
-        <div className="relative w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center border-2 border-[#ffffff] rounded-full bg-white overflow-hidden text-[#5c2018] font-light">
-          <span className={isScratched3 ? "opacity-100" : "opacity-0"}>
-            2026
-          </span>
-          {!isScratched3 && (
-            <canvas
-              ref={canvasRef3}
-              width={canvasSize}
-              height={canvasSize}
-              className="absolute inset-0 cursor-pointer touch-none"
-              onMouseDown={() => setIsDrawing3(true)}
-              onMouseUp={() => setIsDrawing3(false)}
-              onMouseMove={(e) =>
-                scratch(e, canvasRef3, setIsScratched3, isDrawing3)
-              }
-              onMouseLeave={() => setIsDrawing3(false)}
-              onTouchStart={() => setIsDrawing3(true)}
-              onTouchEnd={() => setIsDrawing3(false)}
-              onTouchMove={(e) =>
-                scratch(e, canvasRef3, setIsScratched3, isDrawing3)
-              }
-            />
-          )}
+
+        <div className="flex flex-wrap justify-center gap-4 text-3xl font-bold sm:gap-10 sm:text-4xl">
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+            <span className={isScratched1 ? "opacity-100" : "opacity-0"}>
+              10
+            </span>
+            {!isScratched1 && (
+              <canvas
+                ref={canvasRef1}
+                width={canvasSize}
+                height={canvasSize}
+                className="absolute inset-0 cursor-pointer touch-none"
+                onMouseDown={() => setIsDrawing1(true)}
+                onMouseUp={() => setIsDrawing1(false)}
+                onMouseMove={(e) =>
+                  scratch(e, canvasRef1, setIsScratched1, isDrawing1)
+                }
+                onMouseLeave={() => setIsDrawing1(false)}
+                onTouchStart={() => setIsDrawing1(true)}
+                onTouchEnd={() => setIsDrawing1(false)}
+                onTouchMove={(e) =>
+                  scratch(e, canvasRef1, setIsScratched1, isDrawing1)
+                }
+              />
+            )}
+          </div>
+
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+            <span className={isScratched2 ? "opacity-100" : "opacity-0"}>
+              10
+            </span>
+            {!isScratched2 && (
+              <canvas
+                ref={canvasRef2}
+                width={canvasSize}
+                height={canvasSize}
+                className="absolute inset-0 cursor-pointer touch-none"
+                onMouseDown={() => setIsDrawing2(true)}
+                onMouseUp={() => setIsDrawing2(false)}
+                onMouseMove={(e) =>
+                  scratch(e, canvasRef2, setIsScratched2, isDrawing2)
+                }
+                onMouseLeave={() => setIsDrawing2(false)}
+                onTouchStart={() => setIsDrawing2(true)}
+                onTouchEnd={() => setIsDrawing2(false)}
+                onTouchMove={(e) =>
+                  scratch(e, canvasRef2, setIsScratched2, isDrawing2)
+                }
+              />
+            )}
+          </div>
+
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+            <span className={isScratched3 ? "opacity-100" : "opacity-0"}>
+              2026
+            </span>
+            {!isScratched3 && (
+              <canvas
+                ref={canvasRef3}
+                width={canvasSize}
+                height={canvasSize}
+                className="absolute inset-0 cursor-pointer touch-none"
+                onMouseDown={() => setIsDrawing3(true)}
+                onMouseUp={() => setIsDrawing3(false)}
+                onMouseMove={(e) =>
+                  scratch(e, canvasRef3, setIsScratched3, isDrawing3)
+                }
+                onMouseLeave={() => setIsDrawing3(false)}
+                onTouchStart={() => setIsDrawing3(true)}
+                onTouchEnd={() => setIsDrawing3(false)}
+                onTouchMove={(e) =>
+                  scratch(e, canvasRef3, setIsScratched3, isDrawing3)
+                }
+              />
+            )}
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 className=" text-2xl sm:text-4xl font-['Playfair_Display'] text-[#5c2018] italic">
-          We're getting married!
-        </h1>
       </div>
     </div>
   );

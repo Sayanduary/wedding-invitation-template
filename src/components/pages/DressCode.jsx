@@ -2,7 +2,7 @@ import React from "react";
 import dressCodePng from "../../assets/Dress Code.png";
 function DressCode() {
   return (
-    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-[#fdfefa] px-4 py-10 sm:py-0">
+    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-transparent px-4 py-10 sm:py-0">
       <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#5c2018] italic">
         <h1>Dress Code</h1>
       </div>

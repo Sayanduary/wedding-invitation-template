@@ -2,7 +2,7 @@ import React from "react";
 
 function Transport() {
   return (
-    <div className="min-h-screen h-auto flex flex-col gap-4 sm:gap-5 items-center bg-[#faf8f5] px-6 py-10 sm:p-20 text-center justify-center">
+    <div className="min-h-screen h-auto flex flex-col gap-4 sm:gap-5 items-center bg-transparent px-6 py-10 sm:p-20 text-center justify-center">
       <p className="text-[#5c2018] text-sm">HOW TO REACH US</p>
       <h1 className="text-3xl sm:text-4xl text-[#5c2018] text-spacing-wide">
         Transport

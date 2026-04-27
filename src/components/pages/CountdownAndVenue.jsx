@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import venueIllustration from "../../assets/venue.png";
 
-const WEDDING_DATE = new Date("2026-04-13T10:00:00");
+const WEDDING_DATE = new Date("2026-05-17T10:00:00");
 
 function CountdownAndVenue() {
   const [timeLeft, setTimeLeft] = useState({
@@ -30,7 +30,7 @@ function CountdownAndVenue() {
   }, []);
 
   return (
-    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-[#fdfefa] px-4 py-10 sm:py-0">
+    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-transparent px-4 py-10 sm:py-0">
       <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#5c2018] italic">
         <h1>Countdown </h1>
       </div>

@@ -1,56 +1,134 @@
-import bgImage from "../../assets/roszie.png";
-
 function HeroSection() {
-  const names = ["Sam", "sofia"];
+  const confettiDots = [
+    { top: "5%", left: "8%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "4%", left: "28%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "3%", left: "42%", color: "#f9c74f", size: "w-6 h-6" },
+    { top: "5%", left: "61%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "4%", left: "78%", color: "#4d7cff", size: "w-6 h-6" },
+    { top: "10%", left: "15%", color: "#f9c74f", size: "w-4 h-4" },
+    { top: "12%", left: "36%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "11%", left: "56%", color: "#43a047", size: "w-5 h-5" },
+    { top: "12%", left: "86%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "18%", left: "4%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "19%", left: "21%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "21%", left: "37%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "20%", left: "52%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "20%", left: "69%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "18%", left: "88%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "28%", left: "6%", color: "#43a047", size: "w-5 h-5" },
+    { top: "29%", left: "22%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "31%", left: "39%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "30%", left: "62%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "29%", left: "84%", color: "#43a047", size: "w-5 h-5" },
+    { top: "40%", left: "4%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "41%", left: "15%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "43%", left: "29%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "42%", left: "48%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "43%", left: "71%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "41%", left: "90%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "52%", left: "6%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "53%", left: "18%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "55%", left: "35%", color: "#43a047", size: "w-5 h-5" },
+    { top: "54%", left: "60%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "53%", left: "82%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "64%", left: "4%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "66%", left: "23%", color: "#43a047", size: "w-5 h-5" },
+    { top: "67%", left: "39%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "66%", left: "58%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "65%", left: "76%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "64%", left: "91%", color: "#43a047", size: "w-5 h-5" },
+    { top: "76%", left: "8%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "77%", left: "26%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "78%", left: "44%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "77%", left: "63%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "78%", left: "82%", color: "#7b61ff", size: "w-5 h-5" },
+    { top: "88%", left: "12%", color: "#f9c74f", size: "w-5 h-5" },
+    { top: "89%", left: "30%", color: "#4d7cff", size: "w-5 h-5" },
+    { top: "88%", left: "49%", color: "#43a047", size: "w-5 h-5" },
+    { top: "89%", left: "68%", color: "#ef476f", size: "w-5 h-5" },
+    { top: "88%", left: "88%", color: "#f9c74f", size: "w-5 h-5" },
+  ];
+
+  const safeConfettiDots = confettiDots.filter((dot) => {
+    const top = Number.parseFloat(dot.top);
+    const left = Number.parseFloat(dot.left);
+
+    return !(top >= 34 && top <= 72 && left >= 24 && left <= 76);
+  });
+
   return (
-    <div className="relative h-screen flex flex-col items-center justify-center sm:justify-between gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-8 text-center bg-[#f8f4f4] overflow-hidden px-4 xs:px-5 sm:px-6 md:px-8 lg:px-12 pt-6 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-6 xs:pb-8 sm:pb-10 md:pb-12 lg:pb-14">
-      {/* Background Image Layer positioned at top to show trees */}
-      <div
-        className="absolute inset-0 z-0 opacity-70 bg-cover bg-center bg-no-repeat pointer-events-none"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      ></div>
-
-      {/* Gradient overlay to seamlessly fade the image out into the background color */}
-      <div className="absolute inset-0 z-0 bg-linear-to-b from-transparent via-[#f8f4f4]/80 to-[#ded1d1] pointer-events-none"></div>
-
+    <div className="relative min-h-svh overflow-hidden bg-transparent px-3 py-4 text-center text-[#26211d] sm:px-6 sm:py-8 lg:px-10 lg:py-10">
       <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');`}
+        {`@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=DM+Sans:wght@400;500;700;800&display=swap');
+
+        @keyframes confetti-flow {
+          0%,
+          100% {
+            transform: translate3d(0, 0, 0) scale(1);
+          }
+          50% {
+            transform: translate3d(0, -7px, 0) scale(1.04);
+          }
+        }
+        `}
       </style>
 
-      <div className="flex flex-col items-center justify-center flex-1">
-        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl tracking-wider max-w-2xl relative z-10 mt-0 leading-relaxed px-2 xs:px-3 sm:px-4 ">
-          YOU ARE CORDIALLY INVITED TO CELEBRATE THE WEDDING OF
+      <div
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        {safeConfettiDots.map((dot, index) => (
+          <span
+            key={`${dot.top}-${dot.left}-${index}`}
+            className={`pointer-events-none absolute rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.24),0_0_14px_currentColor,0_0_28px_currentColor] ${dot.size}`}
+            style={{
+              top: dot.top,
+              left: dot.left,
+              backgroundColor: dot.color,
+              color: dot.color,
+              opacity: 0.96,
+              animation: "confetti-flow 3.2s ease-in-out infinite",
+              animationDelay: `${(index % 7) * 0.24}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 z-1 border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]" />
+
+      <div className="relative z-2 mx-auto flex min-h-[calc(100svh-2rem)] max-w-3xl flex-col items-center justify-center px-1">
+        <div className="mb-5 max-w-xl text-[0.62rem] font-medium uppercase tracking-[0.3em] text-[#5b5248]/85 sm:mb-6 sm:text-sm sm:tracking-[0.38em]">
+          You are cordially invited for a beautiful night of celebration and
+          love
         </div>
-        <div className="relative flex flex-col items-center mt-4 xs:mt-6 sm:mt-8 md:mt-10 lg:mt-12 z-10 w-full max-w-4xl px-2 xs:px-3 sm:px-4">
-          <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-['Playfair_Display'] text-[#5c2018] italic mt-2 xs:mt-3 sm:mt-4 md:mt-6 lg:mt-8 font-bold text-wide relative z-10">
-            {names[0]}
+
+        <div className="relative mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+          <div className="relative z-10 text-[1.55rem] leading-none text-[#26211d] sm:text-[2.4rem] lg:text-[3.1rem]">
+            Celebrate
           </div>
-          <div className="text-lg xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-['Playfair_Display'] text-[#5c2018] italic font-bold relative z-10 my-1 xs:my-1.5 sm:my-2 md:my-3 lg:my-4">
-            &
+          <div className="relative z-10 mt-1 text-[1.85rem] leading-tight font-['Special_Elite'] text-[#26211d] sm:text-[2.8rem] lg:text-[3.6rem]">
+            Aria&apos;s first
           </div>
-          <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-['Playfair_Display'] text-[#5c2018] italic mb-2 xs:mb-3 sm:mb-4 md:mb-6 lg:mb-8 font-bold text-wide relative z-10">
-            {names[1]}
+          <div className="relative z-10 text-[1.85rem] leading-tight font-['Special_Elite'] text-[#26211d] sm:text-[2.8rem] lg:text-[3.6rem]">
+            Glamorous Year
           </div>
-        </div>
-        <div className="text-[#5c2018] font-light text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 relative z-10 leading-relaxed mt-10 sm:mt-0 lg:mt-10">
-          WE WOULD LIKE TO INVITE YOU TO CELEBRATE WITH US THE MOST SPECIAL DAY
-          OF OUR LIVES. IT WOULD BE AN HONOR TO HAVE YOU PRESENT AT THIS
-          IMPORTANT MOMENT.
         </div>
       </div>
-      <div
-        className="flex flex-col items-center gap-2 xs:gap-2.5 sm:gap-3 md:gap-4 animate-bounce mt-auto z-10 cursor-pointer hover:opacity-80 transition-opacity"
+
+      <button
+        type="button"
+        className="absolute bottom-5 left-1/2 z-2 flex -translate-x-1/2 flex-col items-center gap-2 text-[#6d5748] transition-opacity hover:opacity-80 sm:bottom-6"
         onClick={() =>
           window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
         }
       >
-        <div className="text-[#4a1a13] font-medium tracking-[0.3em] text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl drop-shadow-sm">
-          SCROLL
-        </div>
-        <div className="text-[#4a1a13] text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl flex items-center justify-center w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-white/50 backdrop-blur-md shadow-sm border border-white/70">
-          <i className="fa-solid fa-arrow-down"></i>
-        </div>
-      </div>
+        <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.4em] sm:text-xs">
+          Scroll
+        </span>
+        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c8b8a3] bg-white/75 text-sm shadow-sm backdrop-blur-sm sm:h-11 sm:w-11 sm:text-base">
+          <i className="fa-solid fa-arrow-down" />
+        </span>
+      </button>
     </div>
   );
 }

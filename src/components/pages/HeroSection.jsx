@@ -1,3 +1,5 @@
+import img_2 from "../../assets/img_2.png";
+
 function HeroSection() {
   const confettiDots = [
     { top: "5%", left: "8%", color: "#ef476f", size: "w-5 h-5" },
@@ -57,7 +59,16 @@ function HeroSection() {
   });
 
   return (
-    <div className="relative min-h-svh overflow-hidden bg-gradient-to-br from-red-50 via-red-100 to-red-200 px-3 py-4 text-center text-[#26211d] sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+    <div
+      className="relative min-h-svh overflow-hidden px-3 py-4 text-center text-[#26211d] sm:px-6 sm:py-8 lg:px-10 lg:py-10"
+      style={{
+        backgroundImage: `url(${img_2})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        backgroundColor: "#f5e6e0",
+      }}
+    >
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=DM+Sans:wght@400;500;700;800&display=swap');
 
@@ -94,7 +105,7 @@ function HeroSection() {
         ))}
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-1 border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]" />
+      <div className="pointer-events-none absolute inset-0 z-1 border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[2px]" />
 
       <div className="relative z-2 mx-auto flex min-h-[calc(100svh-2rem)] max-w-3xl flex-col items-center justify-center px-1">
         <div className="mb-5 max-w-xl text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#5b5248]/85 sm:mb-6 sm:text-sm sm:tracking-[0.38em]">
@@ -129,7 +140,6 @@ function HeroSection() {
           <i className="fa-solid fa-arrow-down" />
         </span>
       </button>
-      
     </div>
   );
 }

@@ -58,6 +58,15 @@ function HeroSection() {
     return !(top >= 34 && top <= 72 && left >= 24 && left <= 76);
   });
 
+  const balloons = [
+    { left: "5%", color: "#ef476f", delay: 0 },
+    { left: "12%", color: "#4d7cff", delay: 0.5 },
+    { left: "88%", color: "#f9c74f", delay: 1 },
+    { left: "92%", color: "#7b61ff", delay: 0.3 },
+    { left: "8%", color: "#43a047", delay: 1.5 },
+    { left: "85%", color: "#ef476f", delay: 0.8 },
+  ];
+
   return (
     <div
       className="relative min-h-svh overflow-hidden px-3 py-4 text-center text-[#26211d] sm:px-6 sm:py-8 lg:px-10 lg:py-10"
@@ -81,6 +90,32 @@ function HeroSection() {
             transform: translate3d(0, -7px, 0) scale(1.04);
           }
         }
+
+        @keyframes float-up {
+          0% {
+            transform: translateY(100vh) translateX(0);
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-100vh) translateX(30px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes sway {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          50% {
+            transform: translateX(20px);
+          }
+        }
         `}
       </style>
 
@@ -88,6 +123,7 @@ function HeroSection() {
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         aria-hidden="true"
       >
+        {/* Confetti dots */}
         {safeConfettiDots.map((dot, index) => (
           <span
             key={`${dot.top}-${dot.left}-${index}`}
@@ -102,6 +138,45 @@ function HeroSection() {
               animationDelay: `${(index % 7) * 0.24}s`,
             }}
           />
+        ))}
+
+        {/* Balloons */}
+        {balloons.map((balloon, index) => (
+          <div
+            key={`balloon-${index}`}
+            className="pointer-events-none absolute"
+            style={{
+              left: balloon.left,
+              bottom: "-50px",
+              animation: "float-up 8s linear infinite",
+              animationDelay: `${balloon.delay}s`,
+            }}
+          >
+            {/* Balloon */}
+            <div
+              style={{
+                width: "40px",
+                height: "50px",
+                borderRadius: "50% 50% 50% 0",
+                backgroundColor: balloon.color,
+                position: "relative",
+                boxShadow: `inset -2px -2px 5px rgba(0,0,0,0.2)`,
+                animation: "sway 3s ease-in-out infinite",
+              }}
+            />
+            {/* String */}
+            <div
+              style={{
+                width: "2px",
+                height: "60px",
+                backgroundColor: "rgba(0,0,0,0.2)",
+                position: "absolute",
+                left: "50%",
+                top: "100%",
+                transform: "translateX(-50%)",
+              }}
+            />
+          </div>
         ))}
       </div>
 

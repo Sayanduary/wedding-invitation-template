@@ -96,19 +96,9 @@ function App() {
   }, []);
 
   return (
-    <div className="relative font-sans antialiased text-gray-800 selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden bg-[#f7f2e9]">
+    <div className="relative overflow-x-hidden bg-gradient-to-br from-red-50 via-red-100 to-red-200 font-sans antialiased text-gray-800 selection:bg-pink-200 selection:text-pink-900">
       <style>
         {`
-          .app-paper-base {
-            background:
-              radial-gradient(circle at top, rgba(255, 252, 247, 0.95), rgba(247, 242, 233, 0.98) 48%, rgba(241, 233, 221, 1) 100%);
-          }
-
-          .app-paper-speckle {
-            background-image: radial-gradient(rgba(92, 74, 56, 0.18) 0.8px, transparent 0.8px);
-            background-size: 10px 10px;
-          }
-
           .global-dot-rain {
             z-index: 80;
           }
@@ -173,11 +163,7 @@ function App() {
       </style>
 
       <div
-        className="pointer-events-none fixed inset-0 z-0 app-paper-base"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none fixed inset-0 z-0 app-paper-speckle opacity-35"
+        className="pointer-events-none fixed inset-0 z-0 border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]"
         aria-hidden="true"
       />
 

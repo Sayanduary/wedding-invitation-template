@@ -144,7 +144,7 @@ function Reveal() {
   };
 
   return (
-    <div className="relative min-h-screen h-auto overflow-hidden bg-[#f7f2e9] px-4 py-10 text-center text-[#26211d] sm:py-0">
+    <div className="relative min-h-screen h-auto overflow-hidden bg-transparent px-4 py-10 text-center text-[#26211d] sm:py-0">
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 

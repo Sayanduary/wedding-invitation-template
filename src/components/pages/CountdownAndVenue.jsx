@@ -30,9 +30,14 @@ function CountdownAndVenue() {
   }, []);
 
   return (
-    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-transparent px-4 py-10 sm:py-0">
+    <div
+      className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center px-4 py-10 sm:py-0"
+      style={{
+        backgroundColor: "#f5e6e0",
+      }}
+    >
       <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#0e0c0b] italic">
-        <h1>Countdown </h1>
+        <h1>Countdown</h1>
       </div>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-2xl sm:text-4xl">
         <div className="flex flex-col items-center gap-2">
@@ -42,7 +47,7 @@ function CountdownAndVenue() {
           <div className="text-sm text-[#0e0c0b]">DAYS</div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']   ">
+          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']">
             {timeLeft.hours}
           </div>
           <div className="text-sm text-[#0e0c0b]">HOURS</div>
@@ -60,9 +65,7 @@ function CountdownAndVenue() {
           <div className="text-sm text-[#0e0c0b]">SECONDS</div>
         </div>
       </div>
-      <div className="font-light text-[#0e0c0b] text-shadow-mauve-500 text-sm">
-        Until The Big Day
-      </div>
+      <div className="font-light text-[#0e0c0b] text-sm">Until The Big Day</div>
 
       <div className="flex flex-col items-center gap-2 mt-6 sm:mt-10">
         <h1 className="text-xl sm:text-2xl font-['Playfair_Display'] text-[#0e0c0b] px-3">

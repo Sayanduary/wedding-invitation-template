@@ -2,7 +2,12 @@ import React from "react";
 import dressCodePng from "../../assets/Dress Code.png";
 function DressCode() {
   return (
-    <div className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center bg-transparent px-4 py-10 sm:py-0">
+    <div
+      className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center px-4 py-10 sm:py-0 relative"
+      style={{
+        backgroundColor: "#f5e6e0",
+      }}
+    >
       <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#0e0c0b] italic">
         <h1>Dress Code</h1>
       </div>
@@ -17,7 +22,7 @@ function DressCode() {
         We invite you to dress elegantly and formally to celebrate this special
         day with us.
       </p>
-      <h1 className="text-2xl sm:text-3xl font-['Playfair_Display'] text-[#0e0c0b] ">
+      <h1 className="text-2xl sm:text-3xl font-['Playfair_Display'] text-[#0e0c0b]">
         Formal Attire
       </h1>
       <h2 className="font-['Playfair_Display'] italic text-[#0e0c0b] text-xl sm:text-2xl">

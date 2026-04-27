@@ -273,13 +273,13 @@ function Reveal() {
 
       <div className="relative z-2 flex min-h-[calc(100svh-2rem)] flex-col items-center justify-center gap-8 text-center sm:gap-14">
         <div>
-          <h1 className="text-5xl sm:text-7xl font-['Special_Elite'] text-[#26211d] italic mt-4 sm:mt-10">
-            reveal the date
+          <h1 className="text-4xl sm:text-5xl  text-[#0e0c0b] italic mt-4 sm:mt-10 font-['Playfair_Display']">
+            Reveal The Date
           </h1>
         </div>
 
         <div>
-          <p className="text-lg sm:text-2xl font-['Special_Elite'] text-[#1f2125] italic">
+          <p className="text-lg sm:text-2xl font-['Playfair_Display']  text-[#0e0c0b] italic">
             SCRATCH TO DISCOVER THE DATE
           </p>
         </div>

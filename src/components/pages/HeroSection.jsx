@@ -104,6 +104,7 @@ const HeroSection = () => {
               className="text-2xl sm:text-6xl rounded-full"
               style={{
                 fontFamily: "Great Vibes",
+                fontWeight: 800,
                 color: "oklch(14.7% 0.004 49.3)",
                 textShadow:
                   "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
@@ -118,10 +119,10 @@ const HeroSection = () => {
         <div className="absolute bottom-16 left-0 right-0 px-6 text-center">
           <div className="inline-block rounded-full px-8 py-4 ">
             <p
-              className="text-3xl sm:text-6xl"
+              className="text-xl sm:text-6xl whitespace-nowrap"
               style={{
                 fontFamily: "Dancing Script",
-                fontWeight: 700,
+                fontWeight: 800,
                 color: "oklch(14.7% 0.004 49.3)",
                 textShadow:
                   "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",

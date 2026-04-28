@@ -10,22 +10,24 @@ function App() {
   const [heroRevealed, setHeroRevealed] = useState(false);
 
   useEffect(() => {
+    // Lock scrolling initially
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
     const handleHeroRevealed = () => {
       setHeroRevealed(true);
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-
-      // Unlock after animation completes (3 seconds)
-      setTimeout(() => {
-        document.documentElement.style.overflow = "auto";
-        document.body.style.overflow = "auto";
-      }, 3000);
+      // Unlock scrolling when hero is revealed
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     };
 
     window.addEventListener("heroRevealed", handleHeroRevealed);
 
     return () => {
       window.removeEventListener("heroRevealed", handleHeroRevealed);
+      // Clean up - unlock if component unmounts
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     };
   }, []);
   useEffect(() => {

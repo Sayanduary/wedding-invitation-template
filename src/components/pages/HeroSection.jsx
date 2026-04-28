@@ -116,10 +116,10 @@ const HeroSection = () => {
           </div>
         </div>
         <img src={logo2} alt="AS Logo" className="w-full h-full object-cover" />
-        <div className="absolute bottom-16 left-0 right-0 px-6 text-center">
+        <div className="absolute bottom-16 left-0 right-0 px-6 text-center no-reveal">
           <div className="inline-block rounded-full px-8 py-4 ">
             <p
-              className="text-xl sm:text-6xl whitespace-nowrap"
+              className="text-2xl sm:text-6xl whitespace-nowrap no-reveal"
               style={{
                 fontFamily: "Dancing Script",
                 fontWeight: 800,

@@ -74,14 +74,14 @@ const HeroSection = () => {
             className="hero-logo-img"
           />
         </button>
-        <div className="absolute bottom-12 text-center">
+        <div className="absolute bottom-4 sm:bottom-12 text-center">
           <button
             onClick={handleLogoClick}
             className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer "
             aria-label="Open slide"
           >
             <div
-              className="text-lg sm:text-4xl font-light tracking-widest text-white"
+              className="text-lg sm:text-5xl font-light tracking-widest text-white"
               style={{
                 fontFamily: "Dancing Script",
               }}

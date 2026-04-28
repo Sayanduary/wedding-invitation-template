@@ -1,24 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import scratchTexture from "../../assets/Scratch Cards1.png";
 
-const DOT_COUNT = 36;
 const CELEBRATION_DURATION_MS = 7000;
 const DOT_START_DELAY_MS = 0.5;
 const MOBILE_CANVAS_SIZE = 112;
 const DESKTOP_CANVAS_SIZE = 160;
-const DOT_COLORS = ["#ef476f", "#7b61ff", "#f9c74f", "#4d7cff", "#43a047"];
-
-const generateDotParticles = (count) =>
-  Array.from({ length: count }, (_, index) => ({
-    id: index,
-    left: Math.random() * 100,
-    top: -12 - Math.random() * 14,
-    size: 16 + Math.random() * 9,
-    duration: 6 + Math.random() * 7,
-    delay: Math.random() * 2.5,
-    sway: 18 + Math.random() * 42,
-    color: DOT_COLORS[index % DOT_COLORS.length],
-  }));
 
 function Reveal() {
   const canvasRef1 = useRef(null);
@@ -31,11 +17,9 @@ function Reveal() {
   const [isDrawing1, setIsDrawing1] = useState(false);
   const [isDrawing2, setIsDrawing2] = useState(false);
   const [isDrawing3, setIsDrawing3] = useState(false);
-  const [showDotRain, setShowDotRain] = useState(false);
   const [canvasSize, setCanvasSize] = useState(() =>
     window.innerWidth >= 640 ? DESKTOP_CANVAS_SIZE : MOBILE_CANVAS_SIZE,
   );
-  const [dotParticles] = useState(() => generateDotParticles(DOT_COUNT));
 
   const allScratched = isScratched1 && isScratched2 && isScratched3;
 
@@ -87,17 +71,11 @@ function Reveal() {
 
     celebrationStartedRef.current = true;
     const startTimer = window.setTimeout(() => {
-      setShowDotRain(true);
       window.dispatchEvent(new Event("wedding:flowerRain"));
     }, DOT_START_DELAY_MS);
 
-    const stopTimer = window.setTimeout(() => {
-      setShowDotRain(false);
-    }, CELEBRATION_DURATION_MS);
-
     return () => {
       window.clearTimeout(startTimer);
-      window.clearTimeout(stopTimer);
     };
   }, [allScratched]);
 
@@ -144,7 +122,12 @@ function Reveal() {
   };
 
   return (
-    <div className="relative min-h-screen h-auto overflow-hidden bg-transparent px-4 py-10 text-center text-[#26211d] sm:py-0">
+    <div
+      className="relative min-h-screen h-auto overflow-hidden px-4 py-10 text-center text-[#26211d] sm:py-0"
+      style={{
+        backgroundColor: "#f5e6e0",
+      }}
+    >
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
@@ -157,105 +140,8 @@ function Reveal() {
     transform: translate3d(-1px, 1px, 0);
   }
 }
-
-.dot-rain {
-  z-index: 0;
-}
-
-.dot-drop {
-  position: absolute;
-  display: block;
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: dot-fall linear forwards;
-}
-
-.dot-sway {
-  display: block;
-  width: 100%;
-  height: 100%;
-  will-change: transform;
-  animation: dot-sway ease-in-out infinite;
-  animation-duration: 3.2s;
-}
-
-.dot-core {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.dot-shape {
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
-}
-
-@keyframes dot-fall {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -10vh, 0);
-  }
-  15% {
-    opacity: 0.9;
-  }
-  85% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 120vh, 0);
-  }
-}
-
-@keyframes dot-sway {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(var(--sway));
-  }
-}
 `}
       </style>
-
-      {showDotRain && (
-        <div
-          className="dot-rain pointer-events-none absolute inset-0"
-          aria-hidden="true"
-        >
-          {dotParticles.map((particle) => (
-            <div
-              key={particle.id}
-              className="dot-drop"
-              style={{
-                left: `${particle.left}%`,
-                top: `${particle.top}%`,
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                animationDuration: `${particle.duration}s`,
-                animationDelay: `${particle.delay}s`,
-              }}
-            >
-              <div
-                className="dot-sway"
-                style={{
-                  "--sway": `${particle.sway}px`,
-                  color: particle.color,
-                }}
-              >
-                <div className="dot-core" aria-hidden="true">
-                  <span
-                    className="dot-shape"
-                    style={{ backgroundColor: particle.color }}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
 
       <div className="pointer-events-none absolute inset-0 z-[1] border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]" />
 

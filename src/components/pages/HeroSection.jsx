@@ -1,222 +1,134 @@
-import img_2 from "../../assets/img_2.png";
+import React, { useState } from "react";
+import logo1 from "../../assets/logo_1.png";
+import logo2 from "../../assets/logo_2.png";
 
-function HeroSection() {
-  const confettiDots = [
-    { top: "5%", left: "8%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "4%", left: "28%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "3%", left: "42%", color: "#f9c74f", size: "w-6 h-6" },
-    { top: "5%", left: "61%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "4%", left: "78%", color: "#4d7cff", size: "w-6 h-6" },
-    { top: "10%", left: "15%", color: "#f9c74f", size: "w-4 h-4" },
-    { top: "12%", left: "36%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "11%", left: "56%", color: "#43a047", size: "w-5 h-5" },
-    { top: "12%", left: "86%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "18%", left: "4%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "19%", left: "21%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "21%", left: "37%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "20%", left: "52%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "20%", left: "69%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "18%", left: "88%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "28%", left: "6%", color: "#43a047", size: "w-5 h-5" },
-    { top: "29%", left: "22%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "31%", left: "39%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "30%", left: "62%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "29%", left: "84%", color: "#43a047", size: "w-5 h-5" },
-    { top: "40%", left: "4%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "41%", left: "15%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "43%", left: "29%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "42%", left: "48%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "43%", left: "71%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "41%", left: "90%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "52%", left: "6%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "53%", left: "18%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "55%", left: "35%", color: "#43a047", size: "w-5 h-5" },
-    { top: "54%", left: "60%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "53%", left: "82%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "64%", left: "4%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "66%", left: "23%", color: "#43a047", size: "w-5 h-5" },
-    { top: "67%", left: "39%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "66%", left: "58%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "65%", left: "76%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "64%", left: "91%", color: "#43a047", size: "w-5 h-5" },
-    { top: "76%", left: "8%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "77%", left: "26%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "78%", left: "44%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "77%", left: "63%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "78%", left: "82%", color: "#7b61ff", size: "w-5 h-5" },
-    { top: "88%", left: "12%", color: "#f9c74f", size: "w-5 h-5" },
-    { top: "89%", left: "30%", color: "#4d7cff", size: "w-5 h-5" },
-    { top: "88%", left: "49%", color: "#43a047", size: "w-5 h-5" },
-    { top: "89%", left: "68%", color: "#ef476f", size: "w-5 h-5" },
-    { top: "88%", left: "88%", color: "#f9c74f", size: "w-5 h-5" },
-  ];
+const HeroSection = () => {
+  const [isRevealed, setIsRevealed] = useState(false);
 
-  const safeConfettiDots = confettiDots.filter((dot) => {
-    const top = Number.parseFloat(dot.top);
-    const left = Number.parseFloat(dot.left);
-
-    return !(top >= 34 && top <= 72 && left >= 24 && left <= 76);
-  });
-
-  const balloons = [
-    { left: "5%", color: "#ef476f", delay: 0 },
-    { left: "12%", color: "#4d7cff", delay: 0.5 },
-    { left: "88%", color: "#f9c74f", delay: 1 },
-    { left: "92%", color: "#7b61ff", delay: 0.3 },
-    { left: "8%", color: "#43a047", delay: 1.5 },
-    { left: "85%", color: "#ef476f", delay: 0.8 },
-  ];
+  const handleLogoClick = () => {
+    setIsRevealed(true);
+  };
 
   return (
-    <div
-      className="relative min-h-svh overflow-hidden px-3 py-4 text-center text-[#26211d] sm:px-6 sm:py-8 lg:px-10 lg:py-10"
-      style={{
-        backgroundImage: `url(${img_2})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-        backgroundColor: "#f5e6e0",
-      }}
-    >
-      <style>
-        {`@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=DM+Sans:wght@400;500;700;800&display=swap');
+    <div className="hero-wrapper relative w-screen h-screen overflow-hidden">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap');
 
-        @keyframes confetti-flow {
-          0%,
-          100% {
-            transform: translate3d(0, 0, 0) scale(1);
-          }
-          50% {
-            transform: translate3d(0, -7px, 0) scale(1.04);
-          }
+        .hero-wrapper {
+          perspective: 1200px;
         }
 
-        @keyframes float-up {
-          0% {
-            transform: translateY(100vh) translateX(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-100vh) translateX(30px);
-            opacity: 0;
-          }
+        .hero-logo-container {
+          transition: all 3s ease-out;
+          transform-origin: top center;
+          transform-style: preserve-3d;
         }
 
-        @keyframes sway {
-          0%, 100% {
-            transform: translateX(0);
-          }
-          50% {
-            transform: translateX(20px);
-          }
+        .hero-logo-container.revealed {
+          transform: rotateX(90deg);
+          opacity: 0;
+          pointer-events: none;
         }
-        `}
-      </style>
 
+        .hero-content {
+          transition: all 3s ease-out;
+          transform-origin: bottom center;
+          transform-style: preserve-3d;
+          transform: rotateX(-90deg);
+          opacity: 0;
+          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        }
+
+        .hero-content.revealed {
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+
+        .hero-logo-img {
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .hero-logo-img:hover {
+          opacity: 0.95;
+        }
+      `}</style>
+
+      {/* Logo Section - Initial State */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-        aria-hidden="true"
+        className={`hero-logo-container absolute inset-0 w-screen h-screen flex items-center justify-center ${
+          isRevealed ? "revealed" : ""
+        }`}
       >
-        {/* Confetti dots */}
-        {safeConfettiDots.map((dot, index) => (
-          <span
-            key={`${dot.top}-${dot.left}-${index}`}
-            className={`pointer-events-none absolute rounded-full shadow-[0_0_0_1px_rgba(255,255,255,0.24),0_0_14px_currentColor,0_0_28px_currentColor] ${dot.size}`}
-            style={{
-              top: dot.top,
-              left: dot.left,
-              backgroundColor: dot.color,
-              color: dot.color,
-              opacity: 0.96,
-              animation: "confetti-flow 3.2s ease-in-out infinite",
-              animationDelay: `${(index % 7) * 0.24}s`,
-            }}
+        <button
+          onClick={handleLogoClick}
+          className="w-full h-full p-0 border-0 bg-transparent focus:outline-none focus:ring-4 focus:ring-yellow-400"
+          aria-label="Open invitation"
+        >
+          <img
+            src={logo1}
+            alt="Wedding invitation seal"
+            className="hero-logo-img"
           />
-        ))}
-
-        {/* Balloons */}
-        {balloons.map((balloon, index) => (
-          <div
-            key={`balloon-${index}`}
-            className="pointer-events-none absolute"
-            style={{
-              left: balloon.left,
-              bottom: "-50px",
-              animation: "float-up 8s linear infinite",
-              animationDelay: `${balloon.delay}s`,
-            }}
-          >
-            {/* Balloon */}
+        </button>
+        <div className="absolute bottom-12 text-center">
+          <div className="inline-block rounded-full px-6 py-3">
             <div
+              className="text-lg font-light tracking-widest text-white"
               style={{
-                width: "40px",
-                height: "50px",
-                borderRadius: "50% 50% 50% 0",
-                backgroundColor: balloon.color,
-                position: "relative",
-                boxShadow: `inset -2px -2px 5px rgba(0,0,0,0.2)`,
-                animation: "sway 3s ease-in-out infinite",
+                fontFamily: "Dancing Script",
               }}
-            />
-            {/* String */}
-            <div
-              style={{
-                width: "2px",
-                height: "60px",
-                backgroundColor: "rgba(0,0,0,0.2)",
-                position: "absolute",
-                left: "50%",
-                top: "100%",
-                transform: "translateX(-50%)",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 z-1 border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[2px]" />
-
-      <div className="relative z-2 mx-auto flex min-h-[calc(100svh-2rem)] max-w-3xl flex-col items-center justify-center px-1">
-        <div className="mb-5 max-w-xl text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#5b5248]/85 sm:mb-6 sm:text-sm sm:tracking-[0.38em]">
-          You are cordially invited for a beautiful night of celebration and
-          love
-        </div>
-
-        <div className="relative mx-auto flex w-full max-w-2xl flex-col items-center px-4 py-8 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
-          <div className="relative z-10 text-[1.55rem] leading-none text-[#26211d] sm:text-[2.4rem] lg:text-[3.1rem]">
-            Celebrate
-          </div>
-          <div className="relative z-10 mt-1 text-[1.85rem] leading-tight font-['Special_Elite'] text-[#26211d] sm:text-[2.8rem] lg:text-[3.6rem]">
-            Aria&apos;s first
-          </div>
-          <div className="relative z-10 text-[1.85rem] leading-tight font-['Special_Elite'] text-[#26211d] sm:text-[2.8rem] lg:text-[3.6rem]">
-            Glamorous Year
+            >
+              Click here to open the slide
+            </div>
           </div>
         </div>
       </div>
 
-      <button
-        type="button"
-        className="absolute bottom-5 left-1/2 z-2 flex -translate-x-1/2 flex-col items-center gap-2 text-[#6d5748] transition-opacity hover:opacity-80 sm:bottom-6"
-        onClick={() =>
-          window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
-        }
+      {/* Hero Content Section - Revealed State */}
+      <div
+        className={`hero-content absolute inset-0 w-screen h-screen flex flex-col items-center justify-center ${
+          isRevealed ? "revealed" : ""
+        }`}
       >
-        <span className="text-[0.65rem] font-extrabold uppercase tracking-[0.4em] sm:text-xs">
-          Scroll
-        </span>
-        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c8b8a3] bg-white/75 text-sm shadow-sm backdrop-blur-sm sm:h-11 sm:w-11 sm:text-base">
-          <i className="fa-solid fa-arrow-down" />
-        </span>
-      </button>
+        <div className="absolute top-16 left-0 right-0 px-6 text-center">
+          <div className="inline-block rounded-full px-8 py-6 ">
+            <p
+              className="text-2xl sm:text-6xl rounded-full"
+              style={{
+                fontFamily: "Great Vibes",
+                color: "oklch(14.7% 0.004 49.3)",
+                textShadow:
+                  "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
+              }}
+            >
+              You are cordially invited for a beautiful night of celebration and
+              love
+            </p>
+          </div>
+        </div>
+        <img src={logo2} alt="AS Logo" className="w-full h-full object-cover" />
+        <div className="absolute bottom-16 left-0 right-0 px-6 text-center">
+          <div className="inline-block rounded-full px-8 py-4 ">
+            <p
+              className="text-3xl sm:text-6xl"
+              style={{
+                fontFamily: "Dancing Script",
+                fontWeight: 700,
+                color: "oklch(14.7% 0.004 49.3)",
+                textShadow:
+                  "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
+              }}
+            >
+              Aria's First Glamorous Year
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default HeroSection;

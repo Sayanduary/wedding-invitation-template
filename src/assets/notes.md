@@ -1,0 +1,1 @@
+1.(Red Picture logo_1)Click to slide (slow sliding annimation) to open hero page with logo_2 image and text would be "You are cordinally invited for a beautiful night of celebration and love , Aria's First glamorous year"

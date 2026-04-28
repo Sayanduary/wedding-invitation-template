@@ -74,7 +74,7 @@ const HeroSection = () => {
             className="hero-logo-img"
           />
         </button>
-        <div className="absolute bottom-4 sm:bottom-12 text-center">
+        <div className="absolute bottom-1 sm:bottom-12 text-center">
           <button
             onClick={handleLogoClick}
             className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer "

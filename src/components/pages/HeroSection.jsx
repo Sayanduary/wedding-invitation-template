@@ -81,9 +81,9 @@ const HeroSection = () => {
             aria-label="Open slide"
           >
             <div
-              className="text-lg sm:text-5xl font-light tracking-widest text-white"
+              className="text-2xl sm:text-6xl font-bold tracking-widest text-white"
               style={{
-                fontFamily: "Dancing Script",
+                fontFamily: "Great Vibes",
               }}
             >
               Click anywhere to open the slide

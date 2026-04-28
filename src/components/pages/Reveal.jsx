@@ -149,6 +149,9 @@ function Reveal() {
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
+           @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+
 @keyframes paper-speckle-drift {
   0%,
   100% {
@@ -188,14 +191,14 @@ function Reveal() {
 
       <div className="relative z-2 flex min-h-[calc(100svh-2rem)] flex-col items-center justify-center gap-8 text-center sm:gap-14">
         <div>
-          <h1 className="text-4xl sm:text-5xl  text-[#0e0c0b] italic mt-4 sm:mt-10 font-['Playfair_Display']">
+          <h1 className="text-4xl sm:text-5xl  text-[#0e0c0b] italic mt-4 sm:mt-10 font-['Dancing_Script']">
             Reveal The Date
           </h1>
         </div>
 
         <div>
-          <p className="text-lg sm:text-2xl font-['Playfair_Display']  text-[#0e0c0b] italic">
-            SCRATCH TO DISCOVER THE DATE
+          <p className="text-lg sm:text-3xl font-['Dancing_Script']  text-[#0e0c0b] italic">
+            Scratch the cards to unveil the date of our special day
           </p>
         </div>
 

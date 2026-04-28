@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo1 from "../../assets/logo_1.png";
+import logo1 from "../../assets/img1.png";
 import logo2 from "../../assets/logo_2.png";
 
 const HeroSection = () => {
@@ -81,7 +81,7 @@ const HeroSection = () => {
             aria-label="Open slide"
           >
             <div
-              className="text-lg font-light tracking-widest text-white"
+              className="text-lg sm:text-4xl font-light tracking-widest text-white"
               style={{
                 fontFamily: "Dancing Script",
               }}

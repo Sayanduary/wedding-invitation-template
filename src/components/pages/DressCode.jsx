@@ -8,7 +8,7 @@ function DressCode() {
         backgroundColor: "#f5e6e0",
       }}
     >
-      <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#0e0c0b] italic">
+      <div className="text-3xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
         <h1>Dress Code</h1>
       </div>
       <div className="w-full max-w-md px-4 -mt-4 flex justify-center">
@@ -22,12 +22,9 @@ function DressCode() {
         We invite you to dress elegantly and formally to celebrate this special
         day with us.
       </p>
-      <h1 className="text-2xl sm:text-3xl font-['Playfair_Display'] text-[#0e0c0b]">
+      <h1 className="text-2xl sm:text-3xl font-['Dancing_Script'] text-[#0e0c0b]">
         Formal Attire
       </h1>
-      <h2 className="font-['Playfair_Display'] italic text-[#0e0c0b] text-xl sm:text-2xl">
-        Please avoid wearing white
-      </h2>
     </div>
   );
 }

@@ -36,30 +36,30 @@ function CountdownAndVenue() {
         backgroundColor: "#f5e6e0",
       }}
     >
-      <div className="text-3xl sm:text-5xl font-['Playfair_Display'] text-[#0e0c0b] italic">
+      <div className="text-3xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
         <h1>Countdown</h1>
       </div>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-2xl sm:text-4xl">
         <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']">
+          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.days}
           </div>
           <div className="text-sm text-[#0e0c0b]">DAYS</div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']">
+          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.hours}
           </div>
           <div className="text-sm text-[#0e0c0b]">HOURS</div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']">
+          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.minutes}
           </div>
           <div className="text-sm text-[#0e0c0b]">MINUTES</div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Playfair_Display']">
+          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.seconds}
           </div>
           <div className="text-sm text-[#0e0c0b]">SECONDS</div>

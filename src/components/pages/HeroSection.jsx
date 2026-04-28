@@ -74,16 +74,20 @@ const HeroSection = () => {
           />
         </button>
         <div className="absolute bottom-12 text-center">
-          <div className="inline-block rounded-full px-6 py-3">
+          <button
+            onClick={handleLogoClick}
+            className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer "
+            aria-label="Open slide"
+          >
             <div
               className="text-lg font-light tracking-widest text-white"
               style={{
                 fontFamily: "Dancing Script",
               }}
             >
-              Click here to open the slide
+              Click anywhere to open the slide
             </div>
-          </div>
+          </button>
         </div>
       </div>
 
@@ -93,7 +97,7 @@ const HeroSection = () => {
           isRevealed ? "revealed" : ""
         }`}
       >
-        <div className="absolute top-16 left-0 right-0 px-6 text-center">
+        <div className="absolute top-8 left-0 right-0 px-6 text-center">
           <div className="inline-block rounded-full px-8 py-6 ">
             <p
               className="text-2xl sm:text-6xl rounded-full"

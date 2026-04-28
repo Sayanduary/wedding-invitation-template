@@ -74,14 +74,14 @@ const HeroSection = () => {
             className="hero-logo-img"
           />
         </button>
-        <div className="absolute bottom-24 sm:bottom-12 text-center">
+        <div className="absolute bottom-24 sm:bottom-12 text-center no-reveal">
           <button
             onClick={handleLogoClick}
             className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer "
             aria-label="Open slide"
           >
             <div
-              className="text-2xl sm:text-6xl font-bold tracking-widest text-white"
+              className="text-2xl sm:text-6xl font-bold tracking-widest text-white no-reveal"
               style={{
                 fontFamily: "Great Vibes",
               }}

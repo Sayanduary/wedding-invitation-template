@@ -45,7 +45,9 @@ function App() {
       "a",
     ].join(", ");
 
-    const textNodes = Array.from(document.querySelectorAll(textSelectors));
+    const textNodes = Array.from(document.querySelectorAll(textSelectors)).filter(
+      (node) => !node.closest(".no-reveal")
+    );
     textNodes.forEach((node) => node.classList.add("text-reveal"));
 
     const observer = new IntersectionObserver(

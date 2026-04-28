@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeroSection from "./components/pages/HeroSection";
 import Reveal from "./components/pages/Reveal";
 import CountdownAndVenue from "./components/pages/CountdownAndVenue";
@@ -7,6 +7,27 @@ import Transport from "./components/pages/Transport";
 import ThankYou from "./components/pages/ThankYou";
 
 function App() {
+  const [heroRevealed, setHeroRevealed] = useState(false);
+
+  useEffect(() => {
+    const handleHeroRevealed = () => {
+      setHeroRevealed(true);
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+
+      // Unlock after animation completes (3 seconds)
+      setTimeout(() => {
+        document.documentElement.style.overflow = "auto";
+        document.body.style.overflow = "auto";
+      }, 3000);
+    };
+
+    window.addEventListener("heroRevealed", handleHeroRevealed);
+
+    return () => {
+      window.removeEventListener("heroRevealed", handleHeroRevealed);
+    };
+  }, []);
   useEffect(() => {
     const textSelectors = [
       "h1",
@@ -45,7 +66,12 @@ function App() {
   }, []);
 
   return (
-    <div className="relative overflow-x-hidden bg-gradient-to-br from-red-50 via-red-100 to-red-200 font-sans antialiased text-gray-800 selection:bg-pink-200 selection:text-pink-900">
+    <div
+      className="relative overflow-x-hidden font-sans antialiased text-gray-800"
+      style={{
+        backgroundImage: "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)",
+      }}
+    >
       <style></style>
 
       <div

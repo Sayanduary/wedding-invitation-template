@@ -7,6 +7,7 @@ const HeroSection = () => {
 
   const handleLogoClick = () => {
     setIsRevealed(true);
+    window.dispatchEvent(new CustomEvent("heroRevealed", { detail: true }));
   };
 
   return (
@@ -126,7 +127,7 @@ const HeroSection = () => {
                   "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
               }}
             >
-              Aria's First Glamorous Year
+              Aria's First Glamorous Year...
             </p>
           </div>
         </div>

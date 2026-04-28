@@ -5,6 +5,8 @@ const CELEBRATION_DURATION_MS = 7000;
 const DOT_START_DELAY_MS = 0.5;
 const MOBILE_CANVAS_SIZE = 112;
 const DESKTOP_CANVAS_SIZE = 160;
+const CONFETTI_COUNT = 100;
+const CONFETTI_COLOR = "oklch(25.8% 0.092 26.042)";
 
 function Reveal() {
   const canvasRef1 = useRef(null);
@@ -20,8 +22,25 @@ function Reveal() {
   const [canvasSize, setCanvasSize] = useState(() =>
     window.innerWidth >= 640 ? DESKTOP_CANVAS_SIZE : MOBILE_CANVAS_SIZE,
   );
+  const [confetti, setConfetti] = useState([]);
 
   const allScratched = isScratched1 && isScratched2 && isScratched3;
+
+  const generateConfetti = () => {
+    const confettiPieces = [];
+    for (let i = 0; i < CONFETTI_COUNT; i++) {
+      confettiPieces.push({
+        id: i,
+        left: Math.random() * 100,
+        delay: Math.random() * 0.5,
+        duration: 3 + Math.random() * 1,
+        rotation: Math.random() * 360,
+        width: 4 + Math.random() * 3,
+        height: 15 + Math.random() * 10,
+      });
+    }
+    setConfetti(confettiPieces);
+  };
 
   useEffect(() => {
     const updateCanvasSize = () => {
@@ -71,6 +90,7 @@ function Reveal() {
 
     celebrationStartedRef.current = true;
     const startTimer = window.setTimeout(() => {
+      generateConfetti();
       window.dispatchEvent(new Event("wedding:flowerRain"));
     }, DOT_START_DELAY_MS);
 
@@ -124,9 +144,7 @@ function Reveal() {
   return (
     <div
       className="relative min-h-screen h-auto overflow-hidden px-4 py-10 text-center text-[#26211d] sm:py-0"
-      style={{
-        backgroundColor: "#f5e6e0",
-      }}
+      style={{ backgroundColor: "#f5e6e0" }}
     >
       <style>
         {`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
@@ -140,10 +158,21 @@ function Reveal() {
     transform: translate3d(-1px, 1px, 0);
   }
 }
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 `}
       </style>
 
-      <div className="pointer-events-none absolute inset-0 z-[1] border border-white/0 bg-[linear-gradient(180deg,rgba(255,255,255,0.00)_0%,rgba(255,255,255,0.005)_28%,rgba(255,255,255,0.015)_100%)] shadow-none backdrop-blur-[36px]" />
+      <div className="pointer-events-none absolute inset-0 z-[1] border border-white/0 " />
 
       <div
         className="pointer-events-none absolute inset-0 z-[1] opacity-25"
@@ -247,6 +276,23 @@ function Reveal() {
           </div>
         </div>
       </div>
+
+      {confetti.map((piece) => (
+        <div
+          key={piece.id}
+          style={{
+            position: "fixed",
+            left: `${piece.left}%`,
+            top: 0,
+            width: `${piece.width}px`,
+            height: `${piece.height}px`,
+            backgroundColor: CONFETTI_COLOR,
+            pointerEvents: "none",
+            zIndex: 50,
+            animation: `confetti-fall ${piece.duration}s linear ${piece.delay}s forwards`,
+          }}
+        />
+      ))}
     </div>
   );
 }

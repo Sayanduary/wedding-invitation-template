@@ -203,7 +203,7 @@ function Reveal() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4 text-3xl font-bold sm:gap-10 sm:text-4xl">
-          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40 font-['Great_Vibes']">
             <span className={isScratched1 ? "opacity-100" : "opacity-0"}>
               17
             </span>
@@ -228,7 +228,7 @@ function Reveal() {
             )}
           </div>
 
-          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40 font-['Great_Vibes']">
             <span className={isScratched2 ? "opacity-100" : "opacity-0"}>
               05
             </span>
@@ -253,7 +253,7 @@ function Reveal() {
             )}
           </div>
 
-          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40">
+          <div className="relative flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-2 border-[#ffffff] bg-white font-light text-[#5c2018] sm:h-40 sm:w-40 font-['Great_Vibes']">
             <span className={isScratched3 ? "opacity-100" : "opacity-0"}>
               2026
             </span>

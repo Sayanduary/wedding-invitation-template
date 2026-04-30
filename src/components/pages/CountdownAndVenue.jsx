@@ -11,6 +11,13 @@ function CountdownAndVenue() {
     seconds: 0,
   });
 
+  const venueAddress =
+    "ITC Royal Bengal, 1, JBS Haldane Ave, Tangra, Kolkata, West Bengal 700105";
+
+  const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    venueAddress,
+  )}`;
+
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date();
@@ -29,74 +36,69 @@ function CountdownAndVenue() {
     return () => clearInterval(timer);
   }, []);
 
+  const TimeBox = ({ value, label }) => (
+    <div className="flex flex-col items-center gap-1 sm:gap-2">
+      <div className="border border-[#0e0c0b]/30 rounded-xl backdrop-blur-md shadow-sm p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
+        {value}
+      </div>
+      <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
+        {label}
+      </div>
+    </div>
+  );
+
   return (
-    <div
-      className="min-h-screen h-auto flex flex-col items-center justify-center gap-4 sm:gap-10 text-center px-3 py-8 sm:py-0"
-      style={{
-        backgroundColor: "#f5e6e0",
-      }}
-    >
-      <div className="text-2xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
-        <h1>Countdown</h1>
-      </div>
-      <div className="flex flex-wrap justify-center gap-2 sm:gap-6">
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
-            {timeLeft.days}
-          </div>
-          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
-            Days
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
-            {timeLeft.hours}
-          </div>
-          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
-            Hours
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
-            {timeLeft.minutes}
-          </div>
-          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
-            Minutes
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1 sm:gap-2">
-          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
-            {timeLeft.seconds}
-          </div>
-          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
-            Seconds
-          </div>
-        </div>
-      </div>
-      <div className="font-light text-[#0e0c0b] text-base sm:text-3xl font-['Great_Vibes'] ">
-        Until The Big Day
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6 sm:gap-10 text-center px-4 py-10 bg-[#f5e6e0]">
+      {/* Heading */}
+      <h1 className="text-3xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
+        Countdown
+      </h1>
+
+      {/* Timer */}
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-6">
+        <TimeBox value={timeLeft.days} label="Days" />
+        <TimeBox value={timeLeft.hours} label="Hours" />
+        <TimeBox value={timeLeft.minutes} label="Minutes" />
+        <TimeBox value={timeLeft.seconds} label="Seconds" />
       </div>
 
-      <div className="flex flex-col items-center gap-2 mt-4 sm:mt-10">
-        <h1 className="text-sm sm:text-2xl font-['Playfair_Display'] text-[#0e0c0b] px-3 leading-snug">
+      <p className="font-light text-[#0e0c0b] text-lg sm:text-3xl font-['Great_Vibes']">
+        Until The Big Day
+      </p>
+
+      {/* Venue Section */}
+      <div className="flex flex-col items-center gap-2 mt-6 sm:mt-10">
+        <h2 className="text-sm sm:text-2xl font-['Playfair_Display'] text-[#0e0c0b] tracking-wide">
           THE CELEBRATION WILL TAKE PLACE AT
-        </h1>
+        </h2>
       </div>
-      <div className="w-full max-w-2xl px-2 sm:px-4 -mt-2">
+
+      {/* Image */}
+      <div className="w-full max-w-2xl px-2 sm:px-4">
         <img
           src={venueIllustration}
           alt="Venue Illustration"
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover rounded-xl shadow-md"
         />
       </div>
-      <div className="px-3">
-        <h1 className="text-base sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] py-3 sm:py-5">
+
+      {/* Venue Info */}
+      <div className="px-3 flex flex-col items-center gap-3">
+        <h1 className="text-xl sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b]">
           Venue Name
         </h1>
-        <p className="text-xs sm:text-2xl text-[oklch(28.6% 0.066 53.813)] px-2 sm:px-3 font-['Playfair_Display'] leading-relaxed">
-          ITC Royal Bengal, JBS Haldane Ave, Tangra, Kolkata, West Bengal 700105
-        </p>
-        <h1 className="text-base sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] py-4 sm:py-9">
+
+        {/* Clickable Address */}
+        <a
+          href={googleMapsLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs sm:text-xl text-[oklch(28.6% 0.066 53.813)] font-['Playfair_Display'] leading-relaxed underline hover:text-[#000] transition"
+        >
+          ITC Royal Bengal, JBS Haldane Ave, Tangra, Kolkata
+        </a>
+
+        <h1 className="text-lg sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] mt-2">
           17th May 2026
         </h1>
       </div>

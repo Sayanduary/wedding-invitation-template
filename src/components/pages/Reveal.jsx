@@ -198,7 +198,7 @@ function Reveal() {
 
         <div>
           <p className="text-lg sm:text-3xl font-['Dancing_Script']  text-[#0e0c0b] italic">
-            Scratch the cards to unveil the date of our special
+            Scratch away to discover the date of our special moment together...
           </p>
         </div>
 

@@ -95,7 +95,7 @@ function CountdownAndVenue() {
           rel="noopener noreferrer"
           className="text-xs sm:text-xl text-[oklch(28.6% 0.066 53.813)] font-['Playfair_Display'] leading-relaxed underline hover:text-[#000] transition"
         >
-          ITC Royal Bengal, JBS Haldane Ave, Tangra, Kolkata
+          ITC Royal Bengal, JBS Haldane Ave, Tangra, Kolkata-700105
         </a>
 
         <h1 className="text-lg sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] mt-2">

@@ -1,66 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import logo1 from "../../assets/img1.png";
 import logo2 from "../../assets/logo_2.png";
+
+const STYLES = {
+  vibes: { fontFamily: "Great Vibes", fontWeight: 800 },
+  dancing: { fontFamily: "Dancing Script", fontWeight: 800 },
+  goldShadow:
+    "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
+  darkColor: "oklch(14.7% 0.004 49.3)",
+};
+
+const CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap');
+  .hero-wrapper { perspective: 1200px; }
+  .hero-logo-container {
+    transition: all 3s ease-out;
+    transform-origin: top center;
+    transform-style: preserve-3d;
+  }
+  .hero-logo-container.revealed {
+    transform: rotateX(90deg);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hero-content {
+    transition: all 3s ease-out;
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    transform: rotateX(-90deg);
+    opacity: 0;
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  }
+  .hero-content.revealed { transform: rotateX(0deg); opacity: 1; }
+  .hero-logo-img { cursor: pointer; width: 100%; height: 100%; object-fit: cover; }
+  .hero-logo-img:hover { opacity: 0.95; }
+`;
 
 const HeroSection = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
-  const handleLogoClick = () => {
+  const handleLogoClick = useCallback(() => {
     setIsRevealed(true);
     window.dispatchEvent(new CustomEvent("heroRevealed", { detail: true }));
-  };
+  }, []);
+
+  const revealedClass = isRevealed ? "revealed" : "";
 
   return (
     <div className="hero-wrapper relative w-screen h-screen overflow-hidden">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&display=swap');
+      <style>{CSS}</style>
 
-        .hero-wrapper {
-          perspective: 1200px;
-        }
-
-        .hero-logo-container {
-          transition: all 3s ease-out;
-          transform-origin: top center;
-          transform-style: preserve-3d;
-        }
-
-        .hero-logo-container.revealed {
-          transform: rotateX(90deg);
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        .hero-content {
-          transition: all 3s ease-out;
-          transform-origin: bottom center;
-          transform-style: preserve-3d;
-          transform: rotateX(-90deg);
-          opacity: 0;
-          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        }
-
-        .hero-content.revealed {
-          transform: rotateX(0deg);
-          opacity: 1;
-        }
-
-        .hero-logo-img {
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .hero-logo-img:hover {
-          opacity: 0.95;
-        }
-      `}</style>
       {/* Logo Section - Initial State */}
       <div
-        className={`hero-logo-container absolute inset-0 w-screen h-screen flex items-center justify-center ${
-          isRevealed ? "revealed" : ""
-        }`}
+        className={`hero-logo-container absolute inset-0 w-screen h-screen flex items-center justify-center ${revealedClass}`}
       >
         <button
           onClick={handleLogoClick}
@@ -73,39 +65,35 @@ const HeroSection = () => {
             className="hero-logo-img"
           />
         </button>
+
         <div className="absolute bottom-24 sm:bottom-12 text-center no-reveal">
           <button
             onClick={handleLogoClick}
-            className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer "
+            className="inline-block rounded-full px-6 py-3 border-0 bg-transparent cursor-pointer"
             aria-label="Open slide"
           >
             <div
               className="text-2xl sm:text-6xl font-bold tracking-widest text-white no-reveal"
-              style={{
-                fontFamily: "Great Vibes",
-              }}
+              style={STYLES.vibes}
             >
               Click anywhere to open the slide
             </div>
           </button>
         </div>
       </div>
+
       {/* Hero Content Section - Revealed State */}
       <div
-        className={`hero-content absolute inset-0 w-screen h-screen flex flex-col items-center justify-center ${
-          isRevealed ? "revealed" : ""
-        }`}
+        className={`hero-content absolute inset-0 w-screen h-screen flex flex-col items-center justify-center ${revealedClass}`}
       >
         <div className="absolute top-8 left-0 right-0 px-6 text-center">
-          <div className="inline-block rounded-full px-8 py-6 ">
+          <div className="inline-block rounded-full px-8 py-6">
             <p
               className="text-2xl sm:text-6xl rounded-full"
               style={{
-                fontFamily: "Great Vibes",
-                fontWeight: 800,
-                color: "oklch(14.7% 0.004 49.3)",
-                textShadow:
-                  "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
+                ...STYLES.vibes,
+                color: STYLES.darkColor,
+                textShadow: STYLES.goldShadow,
               }}
             >
               You are cordially invited for a beautiful night of celebration and
@@ -113,17 +101,17 @@ const HeroSection = () => {
             </p>
           </div>
         </div>
+
         <img src={logo2} alt="AS Logo" className="w-full h-full object-cover" />
+
         <div className="absolute bottom-16 left-0 right-0 px-6 text-center no-reveal">
-          <div className="inline-block rounded-full px-8 py-4 ">
+          <div className="inline-block rounded-full px-8 py-4">
             <p
               className="text-2xl sm:text-6xl whitespace-nowrap no-reveal"
               style={{
-                fontFamily: "Dancing Script",
-                fontWeight: 800,
-                color: "oklch(14.7% 0.004 49.3)",
-                textShadow:
-                  "0 0 5px rgba(212, 175, 55, 0.3), 0 0 10px rgba(212, 175, 55, 0.2), 0 2px 4px rgba(0,0,0,0.25)",
+                ...STYLES.dancing,
+                color: STYLES.darkColor,
+                textShadow: STYLES.goldShadow,
               }}
             >
               Aria's First Glamorous Year...

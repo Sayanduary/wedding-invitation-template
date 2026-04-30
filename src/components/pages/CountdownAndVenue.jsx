@@ -44,32 +44,32 @@ function CountdownAndVenue() {
           <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.days}
           </div>
-          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
-            DAYS
+          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
+            Days
           </div>
         </div>
         <div className="flex flex-col items-center gap-1 sm:gap-2">
           <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.hours}
           </div>
-          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
-            HOURS
+          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
+            Hours
           </div>
         </div>
         <div className="flex flex-col items-center gap-1 sm:gap-2">
           <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.minutes}
           </div>
-          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
-            MINUTES
+          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
+            Minutes
           </div>
         </div>
         <div className="flex flex-col items-center gap-1 sm:gap-2">
           <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.seconds}
           </div>
-          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
-            SECONDS
+          <div className="text-xs sm:text-lg text-[#0e0c0b] font-medium font-['Dancing_Script']">
+            Seconds
           </div>
         </div>
       </div>

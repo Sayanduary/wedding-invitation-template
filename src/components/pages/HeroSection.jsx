@@ -56,7 +56,6 @@ const HeroSection = () => {
           opacity: 0.95;
         }
       `}</style>
-
       {/* Logo Section - Initial State */}
       <div
         className={`hero-logo-container absolute inset-0 w-screen h-screen flex items-center justify-center ${
@@ -91,7 +90,6 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
-
       {/* Hero Content Section - Revealed State */}
       <div
         className={`hero-content absolute inset-0 w-screen h-screen flex flex-col items-center justify-center ${

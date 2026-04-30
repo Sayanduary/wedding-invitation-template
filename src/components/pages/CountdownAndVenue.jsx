@@ -31,66 +31,73 @@ function CountdownAndVenue() {
 
   return (
     <div
-      className="min-h-screen h-auto flex flex-col items-center justify-center gap-6 sm:gap-10 text-center px-4 py-10 sm:py-0"
+      className="min-h-screen h-auto flex flex-col items-center justify-center gap-4 sm:gap-10 text-center px-3 py-8 sm:py-0"
       style={{
         backgroundColor: "#f5e6e0",
       }}
     >
-      <div className="text-3xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
+      <div className="text-2xl sm:text-5xl font-['Dancing_Script'] text-[#0e0c0b] italic">
         <h1>Countdown</h1>
       </div>
-      <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-2xl sm:text-4xl">
-        <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-6">
+        <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.days}
           </div>
-          <div className="text-sm text-[#0e0c0b]">DAYS</div>
+          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
+            DAYS
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
+        <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.hours}
           </div>
-          <div className="text-sm text-[#0e0c0b]">HOURS</div>
+          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
+            HOURS
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
+        <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.minutes}
           </div>
-          <div className="text-sm text-[#0e0c0b]">MINUTES</div>
+          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
+            MINUTES
+          </div>
         </div>
-        <div className="flex flex-col items-center gap-2">
-          <div className="border rounded p-3 sm:p-5 w-16 h-16 sm:w-20 sm:h-20 text-[#0e0c0b] font-['Dancing_Script']">
+        <div className="flex flex-col items-center gap-1 sm:gap-2">
+          <div className="border rounded p-2 sm:p-5 w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center text-xl sm:text-4xl text-[#0e0c0b] font-['Dancing_Script']">
             {timeLeft.seconds}
           </div>
-          <div className="text-sm text-[#0e0c0b]">SECONDS</div>
+          <div className="text-xs sm:text-sm text-[#0e0c0b] font-medium">
+            SECONDS
+          </div>
         </div>
       </div>
-      <div className="font-light text-[#0e0c0b] text-sm">Until The Big Day</div>
+      <div className="font-light text-[#0e0c0b] text-base sm:text-3xl font-['Great_Vibes'] ">
+        Until The Big Day
+      </div>
 
-      <div className="flex flex-col items-center gap-2 mt-6 sm:mt-10">
-        <h1 className="text-xl sm:text-2xl font-['Playfair_Display'] text-[#0e0c0b] px-3">
+      <div className="flex flex-col items-center gap-2 mt-4 sm:mt-10">
+        <h1 className="text-sm sm:text-2xl font-['Playfair_Display'] text-[#0e0c0b] px-3 leading-snug">
           THE CELEBRATION WILL TAKE PLACE AT
         </h1>
       </div>
-      <div className="w-full max-w-2xl px-4 -mt-4">
+      <div className="w-full max-w-2xl px-2 sm:px-4 -mt-2">
         <img
           src={venueIllustration}
           alt="Venue Illustration"
           className="w-full h-auto object-cover"
         />
       </div>
-      <div>
-        <h1 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#0e0c0b]">
+      <div className="px-3">
+        <h1 className="text-base sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] py-3 sm:py-5">
           Venue Name
         </h1>
-        <p className="text-base sm:text-lg text-[#0e0c0b] font-light px-3">
-          123 Wedding Lane, City, State
+        <p className="text-xs sm:text-2xl text-[oklch(28.6% 0.066 53.813)] px-2 sm:px-3 font-['Playfair_Display'] leading-relaxed">
+          ITC Royal Bengal, JBS Haldane Ave, Tangra, Kolkata, West Bengal 700105
         </p>
-        <h1 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#0e0c0b]">
-          Date
-        </h1>
-        <h1 className="text-lg sm:text-xl font-['Playfair_Display'] text-[#0e0c0b]">
-          Reception to Follow
+        <h1 className="text-base sm:text-3xl font-['Great_Vibes'] text-[#0e0c0b] py-4 sm:py-9">
+          17th May 2026
         </h1>
       </div>
     </div>

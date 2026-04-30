@@ -23,7 +23,7 @@ function DressCode() {
         day with us.
       </p>
       <h1 className="text-2xl sm:text-3xl font-['Dancing_Script'] text-[#0e0c0b]">
-        Formal Attire
+        Glam Dress OTT
       </h1>
     </div>
   );
